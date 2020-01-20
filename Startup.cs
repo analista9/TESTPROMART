@@ -1,17 +1,20 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HilarioMarket.Data;
+using HilarioMarket.Repositories.Interface;
+using HilarioMarket.Repositories.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
-namespace TestPromart
+namespace HilarioMarket
 {
     public class Startup
     {
@@ -25,27 +28,27 @@ namespace TestPromart
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<HilarioMarketServiceContext>(options => options.UseSqlServer(Configuration["Connection:HilarioMarketServiceConnection"]));
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddCors(opciones =>
+            {
+                opciones.AddPolicy("AllowMyOrigin",
+                constructor => constructor.AllowAnyOrigin().AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseMvc();
+            app.UseCors("AllowMyOrigin");
         }
     }
 }
