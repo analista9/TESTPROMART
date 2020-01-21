@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TestPromart\\HilarioMarket\\HilarioMarket.csproj": {}
+    "D:\\TestPromart\\TESTPROMART\\HilarioMarket.csproj": {}
   },
   "projects": {
-    "D:\\TestPromart\\HilarioMarket\\HilarioMarket.csproj": {
+    "D:\\TestPromart\\TESTPROMART\\HilarioMarket.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TestPromart\\HilarioMarket\\HilarioMarket.csproj",
+        "projectUniqueName": "D:\\TestPromart\\TESTPROMART\\HilarioMarket.csproj",
         "projectName": "HilarioMarket",
-        "projectPath": "D:\\TestPromart\\HilarioMarket\\HilarioMarket.csproj",
+        "projectPath": "D:\\TestPromart\\TESTPROMART\\HilarioMarket.csproj",
         "packagesPath": "C:\\Users\\victo\\.nuget\\packages\\",
-        "outputPath": "D:\\TestPromart\\HilarioMarket\\obj\\",
+        "outputPath": "D:\\TestPromart\\TESTPROMART\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
